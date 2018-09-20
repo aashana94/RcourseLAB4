@@ -9,7 +9,7 @@ linreg <- function(formula, data){
   if(class(formula)=="formula")
   {
     X <- model.matrix(formula, data)
-    y <- iris[,all.vars(formula)[1]] #pick up independent variable
+    y <- data[,all.vars(formula)[1]] #pick up independent variable
     
     #calculate regression coefficients
     regressioncoeffs <- solve(t(X) %*% X) %*% t(X) %*% y
@@ -45,4 +45,10 @@ linreg <- function(formula, data){
   }
 }
 
+
+## ------------------------------------------------------------------------
+linreg(formula = Petal.Length ~ Species, data = iris)
+
+## ------------------------------------------------------------------------
+linreg(formula = eruptions ~ waiting, data = faithful)
 
