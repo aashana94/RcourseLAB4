@@ -16,7 +16,15 @@ knitr::opts_chunk$set(
 )
 ```
 
-## A function in R for linear regression using S3
+## R package that has a function for linear regression using S3 class
+
+__linreg()__ function computes ordinary least squares. It calculates the following 
+
+ * Regressions coefficients
+ * The fitted values
+ * The residuals
+ * The degrees of freedom
+ * The residual variance
 
 ```{r}
 linreg <- function(formula, data){
@@ -67,13 +75,13 @@ linreg <- function(formula, data){
 This linear regression can be performed on exisiting data like Iris and Faithful.
 The following are the results
 
-* For IRIS
+* For __IRIS__ data set
 
 ```{r}
 linreg(formula = Petal.Length ~ Species, data = iris)
 ```
 
-* For Faithful
+* For __Faithful__ data set
 
 ```{r}
 linreg(formula = eruptions ~ waiting, data = faithful)
