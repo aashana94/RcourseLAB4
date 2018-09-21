@@ -36,14 +36,50 @@ linreg <- function(formula, data){
     #p-values
     pvalues <- 2*pt(abs(tvalues),degreeoffree)
 
-    calculatedstatistics <- list("regressioncoeffs"=regressioncoeffs, "fittedvals"=fittedvals, "residualvals"=residualvals, "degreeoffree"=degreeoffree, "residualvariance"=residualvariance, "varianceofcoeff"=varianceofcoeff, "tvalues"=tvalues, "pvalues"=pvalues)
+    calculatedstatistics <- list("regressioncoeffs"=regressioncoeffs, 
+                                 "fittedvals"=fittedvals, 
+                                 "residualvals"=residualvals, 
+                                 "degreeoffree"=degreeoffree, 
+                                 "residualvariance"=residualvariance, 
+                                 "varianceofcoeff"=varianceofcoeff, 
+                                 "tvalues"=tvalues, 
+                                 "pvalues"=pvalues,
+                                 "call"=match.call())
     class(calculatedstatistics) <- "linreg"
-    return(calculatedstatistics)
+    calculatedstatistics
   }
   else
   {
     stop("The first argument should be of type formula")
   }
+}
+
+# print method for linreg
+print.linreg <- function(x){
+  
+  cat("\nCall:\n", paste(deparse(x$call), sep = "\n", collapse = "\n"), 
+      "\n\n", sep = "")
+  cat("Coefficients:\n")
+  print(format(t(x[["regressioncoeffs"]])[1,]), print.gap = 2L, 
+        quote = FALSE)
+}
+
+# plot methd for linreg
+plot.linreg <- function(x){
+  
+}
+
+# resd method for linreg
+resid.linreg <- function(x) {
+  as.vector(x[["residualvals"]])
+}
+
+pred.linreg <- function(x) {
+  x[["fittedvals"]]
+}
+
+coef.linreg <- function(x) {
+  c(t(x[["regressioncoeffs"]]))
 }
 
 
