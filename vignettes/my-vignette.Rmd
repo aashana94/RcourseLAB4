@@ -78,12 +78,48 @@ The following are the results
 * For __IRIS__ data set
 
 ```{r}
-linreg(formula = Petal.Length ~ Species, data = iris)
+p <- linreg(formula = Petal.Length ~ Species, data = iris)
 ```
 
 * For __Faithful__ data set
 
 ```{r}
-linreg(formula = eruptions ~ waiting, data = faithful)
+q <- linreg(formula = eruptions ~ waiting, data = faithful)
 ```
+
+Methods for the __linreg()__ class S3
+
+```{r}
+# print method for linreg
+print.linreg <- function(x){
+  
+  cat("\nCall:\n", paste(deparse(x$call), sep = "\n", collapse = "\n"), 
+      "\n\n", sep = "")
+  cat("Coefficients:\n")
+  print(format(t(x[["regressioncoeffs"]])[1,]), print.gap = 2L, 
+        quote = FALSE)
+}
+
+# plot methd for linreg
+plot.linreg <- function(x){
+  
+}
+
+# resd method for linreg
+resid.linreg <- function(x) {
+  as.vector(x[["residualvals"]])
+}
+
+pred.linreg <- function(x) {
+  x[["fittedvals"]]
+}
+
+coef.linreg <- function(x) {
+  c(t(x[["regressioncoeffs"]]))
+}
+
+```
+
+
+
 
