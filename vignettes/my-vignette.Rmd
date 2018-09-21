@@ -1,41 +1,62 @@
-#' Making a linear regression function using SE
-#'
-#' @param formula as object
-#' @param data as numeric
-#'
-#' @return calculatedstatistics
-#' @export
-#' @examples linreg(formula = Petal.Length ~ Species, data = iris)
+---
+title: "Regression"
+author: "Aashana"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## R package that has a function for linear regression using S3 class
+
+__linreg()__ function computes ordinary least squares. It calculates the following 
+
+ * Regressions coefficients
+ * The fitted values
+ * The residuals
+ * The degrees of freedom
+ * The residual variance
+
+```{r}
 linreg <- function(formula, data){
   if(class(formula)=="formula")
   {
     X <- model.matrix(formula, data)
     y <- data[,all.vars(formula)[1]] #pick up independent variable
-
+    
     #calculate regression coefficients
     regressioncoeffs <- solve(t(X) %*% X) %*% t(X) %*% y
-
+    
     #calculate fitted values
     fittedvals <- X %*% regressioncoeffs
-
+    
     #residuals
     residualvals <- y-fittedvals
-
+    
     #the degree of freedom
     degreeoffree <- nrow(X)-ncol(X)
-
+    
     #the residual variance
     residualvariance <- (t(residualvals) %*% residualvals) / degreeoffree
-
+    
     #variance of regression coefficients
     varianceofcoeff <- diag(as.vector(residualvariance) * solve(t(X) %*% X))
-
-    #t-values of each coeffcient
+    
+    #t-values of each coeffcient 
     tvalues <- regressioncoeffs / sqrt(varianceofcoeff)
-
+    
     #p-values
     pvalues <- 2*pt(abs(tvalues),degreeoffree)
-
+    
     calculatedstatistics <- list("regressioncoeffs"=regressioncoeffs, "fittedvals"=fittedvals, "residualvals"=residualvals, "degreeoffree"=degreeoffree, "residualvariance"=residualvariance, "varianceofcoeff"=varianceofcoeff, "tvalues"=tvalues, "pvalues"=pvalues)
     class(calculatedstatistics) <- "linreg"
     return(calculatedstatistics)
@@ -46,5 +67,23 @@ linreg <- function(formula, data){
   }
 }
 
+```
 
+
+## Examples
+
+This linear regression can be performed on exisiting data like Iris and Faithful.
+The following are the results
+
+* For __IRIS__ data set
+
+```{r}
+linreg(formula = Petal.Length ~ Species, data = iris)
+```
+
+* For __Faithful__ data set
+
+```{r}
+linreg(formula = eruptions ~ waiting, data = faithful)
+```
 
