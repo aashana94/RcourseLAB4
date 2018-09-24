@@ -2,9 +2,7 @@
 % Please edit documentation in R/regression.R
 \name{linreg}
 \alias{linreg}
-
 \title{Function to implement multiple linear regression without using lm function of R}
-
 \usage{
 linreg(formula, data)
 }
