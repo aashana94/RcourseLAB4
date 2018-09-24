@@ -70,22 +70,8 @@ linreg <- function(formula, data){
 ```
 
 
-## Examples
 
-This linear regression can be performed on exisiting data like Iris and Faithful.
-The following are the results
 
-* For __IRIS__ data set
-
-```{r}
-p <- linreg(formula = Petal.Length ~ Species, data = iris)
-```
-
-* For __Faithful__ data set
-
-```{r}
-q <- linreg(formula = eruptions ~ waiting, data = faithful)
-```
 
 Methods for the __linreg()__ class S3
 
@@ -124,6 +110,14 @@ coef.linreg <- function(x) {
 
 ## LiU theme
 
+There two themes for liu.
+
+theme_liu1 has a white background for plots and has grids and axis of the liu blue
+theme_liu2 has a liu blue background and has white grids and axis. With both having axis numbers or scale in liu's grey color.
+
+Both the themes are created using ggplot2.
+Custom themes can be made by passing specific arguments to the theme() function.
+A general data frame of faithful and iris has been used for giving an example of how plots look like. 
 ```{r}
 
 theme_liu1 <- function(){

@@ -1,4 +1,4 @@
-#' Making a linear regression function using SE
+#' Making a linear regression function using S3 class
 #'
 #' @param formula as object
 #' @param data as numeric
@@ -36,13 +36,13 @@ linreg <- function(formula, data){
     #p-values
     pvalues <- 2*pt(abs(tvalues),degreeoffree)
 
-    calculatedstatistics <- list("regressioncoeffs"=regressioncoeffs, 
-                                 "fittedvals"=fittedvals, 
-                                 "residualvals"=residualvals, 
-                                 "degreeoffree"=degreeoffree, 
-                                 "residualvariance"=residualvariance, 
-                                 "varianceofcoeff"=varianceofcoeff, 
-                                 "tvalues"=tvalues, 
+    calculatedstatistics <- list("regressioncoeffs"=regressioncoeffs,
+                                 "fittedvals"=fittedvals,
+                                 "residualvals"=residualvals,
+                                 "degreeoffree"=degreeoffree,
+                                 "residualvariance"=residualvariance,
+                                 "varianceofcoeff"=varianceofcoeff,
+                                 "tvalues"=tvalues,
                                  "pvalues"=pvalues,
                                  "call"=match.call())
     class(calculatedstatistics) <- "linreg"
@@ -56,17 +56,17 @@ linreg <- function(formula, data){
 
 # print method for linreg
 print.linreg <- function(x){
-  
-  cat("\nCall:\n", paste(deparse(x$call), sep = "\n", collapse = "\n"), 
+
+  cat("\nCall:\n", paste(deparse(x$call), sep = "\n", collapse = "\n"),
       "\n\n", sep = "")
   cat("Coefficients:\n")
-  print(format(t(x[["regressioncoeffs"]])[1,]), print.gap = 2L, 
+  print(format(t(x[["regressioncoeffs"]])[1,]), print.gap = 2L,
         quote = FALSE)
 }
 
 # plot methd for linreg
 plot.linreg <- function(x){
-  
+
 }
 
 # resd method for linreg
