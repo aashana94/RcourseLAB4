@@ -2,7 +2,7 @@
 % Please edit documentation in R/regression.R
 \name{linreg}
 \alias{linreg}
-\title{Making a linear regression function using SE}
+\title{Making a linear regression function using S3 class}
 \usage{
 linreg(formula, data)
 }
@@ -15,7 +15,7 @@ linreg(formula, data)
 calculatedstatistics
 }
 \description{
-Making a linear regression function using SE
+Making a linear regression function using S3 class
 }
 \examples{
 linreg(formula = Petal.Length ~ Species, data = iris)
