@@ -8,7 +8,7 @@
 \method{plot}{linreg}(x)
 }
 \arguments{
-\item{object}{of class linreg}
+\item{x}{object of class linreg}
 }
 \value{
 prints the plots to replicate the plot.lm behaviour

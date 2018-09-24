@@ -8,7 +8,7 @@
 \method{resid}{linreg}(x)
 }
 \arguments{
-\item{object}{of class linreg}
+\item{x}{object of class linreg}
 }
 \value{
 replicate the resid.lm behaviour

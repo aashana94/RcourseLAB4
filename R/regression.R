@@ -63,7 +63,7 @@ print <- function(x) {
 
 #' Function to implement print method for linreg class
 #' @name print
-#' @param object of class linreg
+#' @param x object of class linreg
 #' @return prints text to replicate the print.lm behaviour
 #' @examples print(linreg(formula = Petal.Length ~ Species, data = iris))
 print.linreg <- function(x){
@@ -83,7 +83,7 @@ plot <- function(x) {
 
 #' Function to implement plot methd for linreg class using ggplot
 #' @name plot
-#' @param object of class linreg
+#' @param x object of class linreg
 #' @return prints the plots to replicate the plot.lm behaviour
 plot.linreg <- function(x){
   op <- par(ask=TRUE)
@@ -119,7 +119,7 @@ resid <- function(x) {
 
 #' Function to implement resd method for linreg class
 #' @name resid
-#' @param object of class linreg
+#' @param x object of class linreg
 #' @return replicate the resid.lm behaviour
 resid.linreg <- function(x) {
   as.vector(x[["residualvals"]])
@@ -132,7 +132,7 @@ pred <- function(x) {
 
 #' Function to implement pred method for linreg class
 #' @name pred
-#' @param object of class linreg
+#' @param x object of class linreg
 #' @return replicate the pred.lm behaviour
 pred.linreg <- function(x) {
   x[["fittedvals"]]
@@ -145,7 +145,7 @@ coef <- function(x) {
 
 #' Function to implement coef method for linreg class
 #' @name coef
-#' @param object of class linreg
+#' @param x object of class linreg
 #' @return replicate the coef.lm behaviour
 coef.linreg <- function(x) {
   c(t(x[["regressioncoeffs"]]))
@@ -158,7 +158,7 @@ summary <- function(x) {
 
 #' Function to implement summary method for linreg classs
 #' @name summary
-#' @param object of class linreg
+#' @param x object of class linreg
 #' @return replicate the summary.lm behaviour
 summary.linreg <- function(x) {
   cat("\nCall:\n", paste(deparse(x$call), sep = "\n", collapse = "\n"), 
