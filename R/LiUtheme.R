@@ -1,3 +1,8 @@
+#' Linkoping University theme
+#' @importFrom ggplot2 theme_bw theme element_line element_rect element_blank element_text
+#'
+#' @return Two ggplot themes
+#' @export
 theme_liu1 <- function(){
   ggplot2::theme_bw()+
   ggplot2::theme(panel.background = ggplot2::element_rect(fill = "#FFFFFF", colour = "#666666"),
