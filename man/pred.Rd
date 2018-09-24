@@ -2,9 +2,10 @@
 % Please edit documentation in R/regression.R
 \name{pred}
 \alias{pred}
+\alias{pred.linreg}
 \title{Function to implement pred method for linreg class}
 \usage{
-pred(x)
+\method{pred}{linreg}(x)
 }
 \arguments{
 \item{object}{of class linreg}

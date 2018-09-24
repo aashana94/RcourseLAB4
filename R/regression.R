@@ -56,15 +56,16 @@ linreg <- function(formula, data){
 }
 
 
+
+print <- function(x) {
+  UseMethod("print",x)
+}
+
 #' Function to implement print method for linreg class
 #' @name print
 #' @param object of class linreg
 #' @return prints text to replicate the print.lm behaviour
 #' @examples print(linreg(formula = Petal.Length ~ Species, data = iris))
-print <- function(x) {
-  UseMethod("print",x)
-}
-
 print.linreg <- function(x){
   
   cat("\nCall:\n", paste(deparse(x$call), sep = "\n", collapse = "\n"), "\n\n", sep = "")
@@ -75,14 +76,15 @@ print.linreg <- function(x){
 }
 
 
-#' Function to implement plot methd for linreg class using ggplot
-#' @name plot
-#' @param object of class linreg
-#' @return prints the plots to replicate the plot.lm behaviour
+
 plot <- function(x) {
   UseMethod("plot",x)
 }
 
+#' Function to implement plot methd for linreg class using ggplot
+#' @name plot
+#' @param object of class linreg
+#' @return prints the plots to replicate the plot.lm behaviour
 plot.linreg <- function(x){
   op <- par(ask=TRUE)
   for (i in 1:2)
@@ -110,46 +112,54 @@ plot.linreg <- function(x){
   }
 }
 
+
+resid <- function(x) {
+  UseMethod("resid",x)
+}
+
 #' Function to implement resd method for linreg class
 #' @name resid
 #' @param object of class linreg
 #' @return replicate the resid.lm behaviour
-resid <- function(x) {
-  UseMethod("resid",x)
-}
 resid.linreg <- function(x) {
   as.vector(x[["residualvals"]])
+}
+
+
+pred <- function(x) {
+  UseMethod("pred",x)
 }
 
 #' Function to implement pred method for linreg class
 #' @name pred
 #' @param object of class linreg
 #' @return replicate the pred.lm behaviour
-pred <- function(x) {
-  UseMethod("pred",x)
-}
-
 pred.linreg <- function(x) {
   x[["fittedvals"]]
+}
+
+
+coef <- function(x) {
+  UseMethod("coef",x)
 }
 
 #' Function to implement coef method for linreg class
 #' @name coef
 #' @param object of class linreg
 #' @return replicate the coef.lm behaviour
-coef <- function(x) {
-  UseMethod("coef",x)
-}
-
 coef.linreg <- function(x) {
   c(t(x[["regressioncoeffs"]]))
 }
 
-# summary method for linreg classs
+
 summary <- function(x) {
   UseMethod("summary",x)
 }
 
+#' Function to implement summary method for linreg classs
+#' @name summary
+#' @param object of class linreg
+#' @return replicate the summary.lm behaviour
 summary.linreg <- function(x) {
   cat("\nCall:\n", paste(deparse(x$call), sep = "\n", collapse = "\n"), 
       "\n\n", sep = "")

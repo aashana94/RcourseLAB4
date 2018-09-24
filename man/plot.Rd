@@ -2,9 +2,10 @@
 % Please edit documentation in R/regression.R
 \name{plot}
 \alias{plot}
+\alias{plot.linreg}
 \title{Function to implement plot methd for linreg class using ggplot}
 \usage{
-plot(x)
+\method{plot}{linreg}(x)
 }
 \arguments{
 \item{object}{of class linreg}

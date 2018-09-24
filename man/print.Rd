@@ -2,9 +2,10 @@
 % Please edit documentation in R/regression.R
 \name{print}
 \alias{print}
+\alias{print.linreg}
 \title{Function to implement print method for linreg class}
 \usage{
-print(x)
+\method{print}{linreg}(x)
 }
 \arguments{
 \item{object}{of class linreg}

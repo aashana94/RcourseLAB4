@@ -2,9 +2,10 @@
 % Please edit documentation in R/regression.R
 \name{coef}
 \alias{coef}
+\alias{coef.linreg}
 \title{Function to implement coef method for linreg class}
 \usage{
-coef(x)
+\method{coef}{linreg}(x)
 }
 \arguments{
 \item{object}{of class linreg}

@@ -2,9 +2,10 @@
 % Please edit documentation in R/regression.R
 \name{resid}
 \alias{resid}
+\alias{resid.linreg}
 \title{Function to implement resd method for linreg class}
 \usage{
-resid(x)
+\method{resid}{linreg}(x)
 }
 \arguments{
 \item{object}{of class linreg}
