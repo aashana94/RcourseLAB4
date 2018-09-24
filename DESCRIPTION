@@ -6,9 +6,10 @@ Author: aashana, jasleen
 Maintainer: The package maintainer <aashananijhawan@gmail.com>
 Description: More about what it does (maybe more than one line)
     Use four spaces when indenting paragraphs within the Description.
-License: Apache Liscense
+License: Apache License
 Encoding: UTF-8
 LazyData: true
+Imports: ggplot2
 RoxygenNote: 6.1.0
 Suggests: knitr,
     rmarkdown,
