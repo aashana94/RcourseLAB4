@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/aashana94/RcourseLAB4.svg?branch=master)](https://travis-ci.org/aashana94/RcourseLAB4)
 LiU LAb 4
 ================
 
