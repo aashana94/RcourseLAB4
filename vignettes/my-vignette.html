@@ -84,19 +84,33 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>The degrees of freedom</li>
 <li>The residual variance</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lm &lt;-<span class="st"> </span>RcourseLAB4<span class="op">::</span><span class="kw">linreg</span>(<span class="dt">formula =</span> Petal.Length <span class="op">~</span><span class="st"> </span>Species, <span class="dt">data =</span> iris)</code></pre></div>
-<p>Methods for the <strong>linreg()</strong> class S3</p>
-</div>
-<div id="print-method-for-linreg" class="section level1">
-<h1>print method for linreg</h1>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">RcourseLAB4<span class="op">::</span><span class="kw">print.linreg</span>(lm)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">linreg</span>(<span class="dt">formula =</span> Petal.Length <span class="op">~</span><span class="st"> </span>Species, <span class="dt">data =</span> iris)
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Call:</span>
-<span class="co">#&gt; RcourseLAB4::linreg(formula = Petal.Length ~ Species, data = iris)</span>
+<span class="co">#&gt; linreg(formula = Petal.Length ~ Species, data = iris)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Coefficients:</span>
 <span class="co">#&gt;       (Intercept) Speciesversicolor  Speciesvirginica </span>
 <span class="co">#&gt;           &quot;1.462&quot;           &quot;2.798&quot;           &quot;4.090&quot;</span></code></pre></div>
+<p>Methods for the <strong>linreg()</strong> class S3</p>
+</div>
+<div id="summary-method-for-linreg" class="section level1">
+<h1>summary method for linreg</h1>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(<span class="kw">linreg</span>(<span class="dt">formula =</span> Petal.Length <span class="op">~</span><span class="st"> </span>Species, <span class="dt">data =</span> iris))
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Call:</span>
+<span class="co">#&gt; linreg(formula = Petal.Length ~ Species, data = iris)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Coefficients:</span>
+<span class="co">#&gt;                   Estimate Std. Error t value p value                 </span>
+<span class="co">#&gt; (Intercept)       1.462    0.06086    24.02   9.30305152284244e-53 ***</span>
+<span class="co">#&gt; Speciesversicolor 2.798    0.08607    32.51   5.25458742021361e-69 ***</span>
+<span class="co">#&gt; Speciesvirginica  4.09     0.08607    47.52   4.10613861905076e-91 ***</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; ---</span>
+<span class="co">#&gt; Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Residual standard error: 0.43 on 147 degrees of freedom</span></code></pre></div>
 <div id="liu-theme" class="section level2">
 <h2>LiU theme</h2>
 <p>There two themes for liu.</p>

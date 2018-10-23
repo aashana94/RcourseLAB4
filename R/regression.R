@@ -3,6 +3,8 @@
 #' @param formula as formula object
 #' @param data as data.frame
 #' @return an object of class linreg as an S3 class
+#' @importFrom graphics par
+#' @importFrom stats median model.matrix pt symnum
 #' @export linreg
 #' @examples linreg(formula = Petal.Length ~ Species, data = iris)
 linreg <- function(formula, data){
@@ -61,7 +63,7 @@ linreg <- function(formula, data){
 #' @param x object of class linreg
 #' @return prints text to replicate the print.lm behaviour
 #' @examples print(linreg(formula = Petal.Length ~ Species, data = iris))
-#' @export print
+#' @export
 print.linreg <- function(x){
   
   cat("\nCall:\n", paste(deparse(x$call), sep = "\n", collapse = "\n"), "\n\n", sep = "")
@@ -71,8 +73,11 @@ print.linreg <- function(x){
   
 }
 
-
-
+#' Function to implement plot methd for linreg class using ggplot
+#' @name plot
+#' @param x object of class linreg
+#' @return prints the plots to replicate the plot.lm behaviour
+#' @export
 plot <- function(x) {
   UseMethod("plot",x)
 }
@@ -81,14 +86,14 @@ plot <- function(x) {
 #' @name plot.linreg
 #' @param x object of class linreg
 #' @return prints the plots to replicate the plot.lm behaviour
-#' @export plot
+#' @export
 plot.linreg <- function(x){
   op <- par(ask=TRUE)
   for (i in 1:2)
   {
     inputdataplot <- data.frame("Residuals"=x[["residualvals"]],"FittedValues"=x[["fittedvals"]])
     if(i==1){
-      print(ggplot2::ggplot(inputdataplot,ggplot2::aes(x=FittedValues, y=Residuals)) + 
+      print(ggplot2::ggplot(inputdataplot,ggplot2::aes(x=x[["fittedvals"]], y=x[["residualvals"]])) + 
               ggplot2::geom_point(shape=1) +
               ggplot2::stat_summary(fun.y=median, color="red", geom="line", size=1) +
               ggplot2::scale_x_continuous(name = "Fitted Values") +
@@ -97,7 +102,7 @@ plot.linreg <- function(x){
     }
     
     if(i==2){
-      print(ggplot2::ggplot(inputdataplot,ggplot2::aes(x=FittedValues, y=sqrt(abs((x[["residualvals"]] - mean(x[["residualvals"]])) / as.vector(sqrt(x[["residualvariance"]])))))) + 
+      print(ggplot2::ggplot(inputdataplot,ggplot2::aes(x=x[["fittedvals"]], y=sqrt(abs((x[["residualvals"]] - mean(x[["residualvals"]])) / as.vector(sqrt(x[["residualvariance"]])))))) + 
               ggplot2::geom_point(shape=1) +
               ggplot2::stat_summary(fun.y=mean, color="red", geom="line", size=1) +
               ggplot2::scale_x_continuous(name = "Fitted Values") +
@@ -109,7 +114,11 @@ plot.linreg <- function(x){
   }
 }
 
-
+#' Function to implement resd method for linreg class
+#' @name resid
+#' @param x object of class linreg
+#' @return replicate the resid.lm behaviour
+#' @export
 resid <- function(x) {
   UseMethod("resid",x)
 }
@@ -118,12 +127,16 @@ resid <- function(x) {
 #' @name resid.linreg
 #' @param x object of class linreg
 #' @return replicate the resid.lm behaviour
-#' @export resid
+#' @export
 resid.linreg <- function(x) {
   as.vector(x[["residualvals"]])
 }
 
-
+#' Function to implement pred method for linreg class
+#' @name pred
+#' @param x object of class linreg
+#' @return replicate the pred.lm behaviour
+#' @export
 pred <- function(x) {
   UseMethod("pred",x)
 }
@@ -132,12 +145,16 @@ pred <- function(x) {
 #' @name pred.linreg
 #' @param x object of class linreg
 #' @return replicate the pred.lm behaviour
-#' @export pred
+#' @export
 pred.linreg <- function(x) {
   x[["fittedvals"]]
 }
 
-
+#' Function to implement coef method for linreg class
+#' @name coef
+#' @param x object of class linreg
+#' @return replicate the coef.lm behaviour
+#' @export
 coef <- function(x) {
   UseMethod("coef",x)
 }
@@ -146,12 +163,16 @@ coef <- function(x) {
 #' @name coef.linreg
 #' @param x object of class linreg
 #' @return replicate the coef.lm behaviour
-#' @export coef
+#' @export
 coef.linreg <- function(x) {
   c(t(x[["regressioncoeffs"]]))
 }
 
-
+#' Function to implement summary method for linreg classs
+#' @name summary
+#' @param x object of class linreg
+#' @return replicate the summary.lm behaviour
+#' @export
 summary <- function(x) {
   UseMethod("summary",x)
 }
@@ -160,7 +181,7 @@ summary <- function(x) {
 #' @name summary.linreg
 #' @param x object of class linreg
 #' @return replicate the summary.lm behaviour
-#' @export summary
+#' @export
 summary.linreg <- function(x) {
   cat("\nCall:\n", paste(deparse(x$call), sep = "\n", collapse = "\n"), 
       "\n\n", sep = "")

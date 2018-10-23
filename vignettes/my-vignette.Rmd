@@ -14,6 +14,7 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+library(RcourseLAB4)
 library(ggplot2)
 ```
 
@@ -28,17 +29,16 @@ __linreg()__ function computes ordinary least squares. It calculates the followi
  * The residual variance
 
 ```{r}
-lm <- RcourseLAB4::linreg(formula = Petal.Length ~ Species, data = iris)
+linreg(formula = Petal.Length ~ Species, data = iris)
 ```
 
 
 Methods for the __linreg()__ class S3
 
-# print method for linreg
+# summary method for linreg
 ```{r}
-RcourseLAB4::print(lm)
+summary(linreg(formula = Petal.Length ~ Species, data = iris))
 ```
-
 
 
 ## LiU theme
