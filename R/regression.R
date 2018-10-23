@@ -61,7 +61,7 @@ linreg <- function(formula, data){
 #' @param x object of class linreg
 #' @return prints text to replicate the print.lm behaviour
 #' @examples print(linreg(formula = Petal.Length ~ Species, data = iris))
-#' @export
+#' @export print
 print.linreg <- function(x){
   
   cat("\nCall:\n", paste(deparse(x$call), sep = "\n", collapse = "\n"), "\n\n", sep = "")
@@ -81,7 +81,7 @@ plot <- function(x) {
 #' @name plot.linreg
 #' @param x object of class linreg
 #' @return prints the plots to replicate the plot.lm behaviour
-#' @export
+#' @export plot
 plot.linreg <- function(x){
   op <- par(ask=TRUE)
   for (i in 1:2)
@@ -118,7 +118,7 @@ resid <- function(x) {
 #' @name resid.linreg
 #' @param x object of class linreg
 #' @return replicate the resid.lm behaviour
-#' @export
+#' @export resid
 resid.linreg <- function(x) {
   as.vector(x[["residualvals"]])
 }
@@ -132,7 +132,7 @@ pred <- function(x) {
 #' @name pred.linreg
 #' @param x object of class linreg
 #' @return replicate the pred.lm behaviour
-#' @export
+#' @export pred
 pred.linreg <- function(x) {
   x[["fittedvals"]]
 }
@@ -146,7 +146,7 @@ coef <- function(x) {
 #' @name coef.linreg
 #' @param x object of class linreg
 #' @return replicate the coef.lm behaviour
-#' @export
+#' @export coef
 coef.linreg <- function(x) {
   c(t(x[["regressioncoeffs"]]))
 }
@@ -160,7 +160,7 @@ summary <- function(x) {
 #' @name summary.linreg
 #' @param x object of class linreg
 #' @return replicate the summary.lm behaviour
-#' @export
+#' @export summary
 summary.linreg <- function(x) {
   cat("\nCall:\n", paste(deparse(x$call), sep = "\n", collapse = "\n"), 
       "\n\n", sep = "")
