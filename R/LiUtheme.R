@@ -1,4 +1,5 @@
 #' Linkoping University theme
+#' @name theme_liu1
 #' @importFrom ggplot2 theme_bw theme element_line element_rect element_blank element_text
 #'
 #' @return Two ggplot themes
@@ -19,6 +20,12 @@ ggplot2::ggplot(faithful, ggplot2::aes(x=eruptions, y=waiting))+
   ggplot2::geom_point()+
   theme_liu1()
 
+#' Linkoping University theme with blue background
+#' @name theme_liu2
+#' @importFrom ggplot2 theme_bw theme element_line element_rect element_blank element_text
+#'
+#' @return Two ggplot themes
+#' @export
 theme_liu2 <- function(){
   ggplot2::theme_bw()+
     ggplot2::theme(panel.background = ggplot2::element_rect(fill = "#54d8e0", colour = "#666666"),

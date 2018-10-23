@@ -56,16 +56,12 @@ linreg <- function(formula, data){
 }
 
 
-
-print <- function(x) {
-  UseMethod("print",x)
-}
-
 #' Function to implement print method for linreg class
-#' @name print
+#' @name print.linreg
 #' @param x object of class linreg
 #' @return prints text to replicate the print.lm behaviour
 #' @examples print(linreg(formula = Petal.Length ~ Species, data = iris))
+#' @export
 print.linreg <- function(x){
   
   cat("\nCall:\n", paste(deparse(x$call), sep = "\n", collapse = "\n"), "\n\n", sep = "")
@@ -82,30 +78,31 @@ plot <- function(x) {
 }
 
 #' Function to implement plot methd for linreg class using ggplot
-#' @name plot
+#' @name plot.linreg
 #' @param x object of class linreg
 #' @return prints the plots to replicate the plot.lm behaviour
+#' @export
 plot.linreg <- function(x){
   op <- par(ask=TRUE)
   for (i in 1:2)
   {
     inputdataplot <- data.frame("Residuals"=x[["residualvals"]],"FittedValues"=x[["fittedvals"]])
     if(i==1){
-      print(ggplot(inputdataplot,aes(x=FittedValues, y=Residuals)) + 
-              geom_point(shape=1) +
-              stat_summary(fun.y=median, color="red", geom="line", size=1) +
-              scale_x_continuous(name = "Fitted Values") +
-              scale_y_continuous(name = "Residuals", limits=c(-1.5,1.5)) +
-              ggtitle("Residuals vs Fitted"))
+      print(ggplot2::ggplot(inputdataplot,ggplot2::aes(x=FittedValues, y=Residuals)) + 
+              ggplot2::geom_point(shape=1) +
+              ggplot2::stat_summary(fun.y=median, color="red", geom="line", size=1) +
+              ggplot2::scale_x_continuous(name = "Fitted Values") +
+              ggplot2::scale_y_continuous(name = "Residuals", limits=c(-1.5,1.5)) +
+              ggplot2::ggtitle("Residuals vs Fitted"))
     }
     
     if(i==2){
-      print(ggplot(inputdataplot,aes(x=FittedValues, y=sqrt(abs((x[["residualvals"]] - mean(x[["residualvals"]])) / as.vector(sqrt(x[["residualvariance"]])))))) + 
-              geom_point(shape=1) +
-              stat_summary(fun.y=mean, color="red", geom="line", size=1) +
-              scale_x_continuous(name = "Fitted Values") +
-              scale_y_continuous(name = expression(sqrt("Standardized Residuals")), limits=c(0,2)) +
-              ggtitle("Scale-Location"))
+      print(ggplot2::ggplot(inputdataplot,ggplot2::aes(x=FittedValues, y=sqrt(abs((x[["residualvals"]] - mean(x[["residualvals"]])) / as.vector(sqrt(x[["residualvariance"]])))))) + 
+              ggplot2::geom_point(shape=1) +
+              ggplot2::stat_summary(fun.y=mean, color="red", geom="line", size=1) +
+              ggplot2::scale_x_continuous(name = "Fitted Values") +
+              ggplot2::scale_y_continuous(name = expression(sqrt("Standardized Residuals")), limits=c(0,2)) +
+              ggplot2::ggtitle("Scale-Location"))
     }
     on.exit(par(op))
     i<-i+1
@@ -118,9 +115,10 @@ resid <- function(x) {
 }
 
 #' Function to implement resd method for linreg class
-#' @name resid
+#' @name resid.linreg
 #' @param x object of class linreg
 #' @return replicate the resid.lm behaviour
+#' @export
 resid.linreg <- function(x) {
   as.vector(x[["residualvals"]])
 }
@@ -131,9 +129,10 @@ pred <- function(x) {
 }
 
 #' Function to implement pred method for linreg class
-#' @name pred
+#' @name pred.linreg
 #' @param x object of class linreg
 #' @return replicate the pred.lm behaviour
+#' @export
 pred.linreg <- function(x) {
   x[["fittedvals"]]
 }
@@ -144,9 +143,10 @@ coef <- function(x) {
 }
 
 #' Function to implement coef method for linreg class
-#' @name coef
+#' @name coef.linreg
 #' @param x object of class linreg
 #' @return replicate the coef.lm behaviour
+#' @export
 coef.linreg <- function(x) {
   c(t(x[["regressioncoeffs"]]))
 }
@@ -157,9 +157,10 @@ summary <- function(x) {
 }
 
 #' Function to implement summary method for linreg classs
-#' @name summary
+#' @name summary.linreg
 #' @param x object of class linreg
 #' @return replicate the summary.lm behaviour
+#' @export
 summary.linreg <- function(x) {
   cat("\nCall:\n", paste(deparse(x$call), sep = "\n", collapse = "\n"), 
       "\n\n", sep = "")

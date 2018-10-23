@@ -27,83 +27,31 @@ __linreg()__ function computes ordinary least squares. It calculates the followi
  * The residual variance
 
 ```{r}
-linreg <- function(formula, data){
-  if(class(formula)=="formula")
-  {
-    X <- model.matrix(formula, data)
-    y <- data[,all.vars(formula)[1]] #pick up independent variable
-    
-    #calculate regression coefficients
-    regressioncoeffs <- solve(t(X) %*% X) %*% t(X) %*% y
-    
-    #calculate fitted values
-    fittedvals <- X %*% regressioncoeffs
-    
-    #residuals
-    residualvals <- y-fittedvals
-    
-    #the degree of freedom
-    degreeoffree <- nrow(X)-ncol(X)
-    
-    #the residual variance
-    residualvariance <- (t(residualvals) %*% residualvals) / degreeoffree
-    
-    #variance of regression coefficients
-    varianceofcoeff <- diag(as.vector(residualvariance) * solve(t(X) %*% X))
-    
-    #t-values of each coeffcient 
-    tvalues <- regressioncoeffs / sqrt(varianceofcoeff)
-    
-    #p-values
-    pvalues <- 2*pt(abs(tvalues),degreeoffree)
-    
-    calculatedstatistics <- list("regressioncoeffs"=regressioncoeffs, "fittedvals"=fittedvals, "residualvals"=residualvals, "degreeoffree"=degreeoffree, "residualvariance"=residualvariance, "varianceofcoeff"=varianceofcoeff, "tvalues"=tvalues, "pvalues"=pvalues)
-    class(calculatedstatistics) <- "linreg"
-    return(calculatedstatistics)
-  }
-  else
-  {
-    stop("The first argument should be of type formula")
-  }
-}
-
+linreg(formula = Petal.Length ~ Species, data = iris)
 ```
-
-
-
 
 
 Methods for the __linreg()__ class S3
 
 ```{r}
+lm <- linreg(formula = Petal.Length ~ Species, data = iris)
 # print method for linreg
-print.linreg <- function(x){
-  
-  cat("\nCall:\n", paste(deparse(x$call), sep = "\n", collapse = "\n"), 
-      "\n\n", sep = "")
-  cat("Coefficients:\n")
-  print(format(t(x[["regressioncoeffs"]])[1,]), print.gap = 2L, 
-        quote = FALSE)
-}
+print(lm)
 
 # plot methd for linreg
-plot.linreg <- function(x){
-  
-}
+plot(lm)
 
 # resd method for linreg
-resid.linreg <- function(x) {
-  as.vector(x[["residualvals"]])
-}
+resid(lm)
 
-pred.linreg <- function(x) {
-  x[["fittedvals"]]
-}
+# pred method for linreg
+pred(lm)
 
-coef.linreg <- function(x) {
-  c(t(x[["regressioncoeffs"]]))
-}
+# coef method for linreg
+coef(lm)
 
+# summary method for linreg
+summary(lm)
 ```
 
 
