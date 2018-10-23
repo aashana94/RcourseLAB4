@@ -15,6 +15,10 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 ```
+```{r include=FALSE}
+library(RcourseLAB4)
+library(ggplot2)
+```
 
 ## R package that has a function for linear regression using S3 class
 
@@ -27,31 +31,40 @@ __linreg()__ function computes ordinary least squares. It calculates the followi
  * The residual variance
 
 ```{r}
-linreg(formula = Petal.Length ~ Species, data = iris)
+lm <- linreg(formula = Petal.Length ~ Species, data = iris)
 ```
 
 
 Methods for the __linreg()__ class S3
 
-```{r}
-lm <- linreg(formula = Petal.Length ~ Species, data = iris)
 # print method for linreg
-print(lm)
+```{r}
+RcourseLAB4::print.linreg(lm)
+```
 
 # plot methd for linreg
-plot(lm)
+```{r}
+RcourseLAB4::plot(lm)
+```
 
 # resd method for linreg
-resid(lm)
+```{r}
+RcourseLAB4::resid(lm)
+```
 
 # pred method for linreg
-pred(lm)
+```{r}
+RcourseLAB4::pred(lm)
+```
 
 # coef method for linreg
-coef(lm)
+```{r}
+RcourseLAB4::coef(lm)
+```
 
 # summary method for linreg
-summary(lm)
+```{r}
+RcourseLAB4::summary(lm)
 ```
 
 
@@ -67,47 +80,9 @@ Both the themes are created using ggplot2.
 Custom themes can be made by passing specific arguments to the theme() function.
 A general data frame of faithful and iris has been used for giving an example of how plots look like. 
 ```{r}
+RcourseLAB4::theme_liu1()
 
-theme_liu1 <- function(){
-  ggplot2::theme_bw()+
-  ggplot2::theme(panel.background = ggplot2::element_rect(fill = "#FFFFFF", colour = "#666666"),
-        panel.grid.major = ggplot2::element_line(colour = "#54d8e0", size=0.3),
-        panel.grid.minor = ggplot2::element_line(colour = "#54d8e0", size=0.3),
-        axis.line = ggplot2::element_line(size =0.3, colour = "#54d8e0"),
-        axis.text = ggplot2::element_text(size = ggplot2::rel(0.8)),
-        axis.ticks = ggplot2::element_line(colour = "#54d8e0"),
-        legend.key = ggplot2::element_rect(colour = "#54d8e0"),
-        panel.border = ggplot2::element_rect(fill = NA, colour = "#54d8e0"),
-        strip.background = ggplot2::element_rect(fill = "grey80", colour = "#54d8e0"))
-}
-
-ggplot2::ggplot(faithful, ggplot2::aes(x=eruptions, y=waiting))+
-  ggplot2::geom_point()+
-  theme_liu1()
-
-
-theme_liu2 <- function(){
-  ggplot2::theme_bw()+
-    ggplot2::theme(panel.background = ggplot2::element_rect(fill = "#54d8e0", colour = "#666666"),
-          panel.grid.major = ggplot2::element_line(colour = "#FFFFFF", size=0.3),
-          panel.grid.minor = ggplot2::element_line(colour = "#FFFFFF", size=0.3),
-          axis.line = ggplot2::element_line(size =0.3, colour = "#54d8e0"),
-          axis.text = ggplot2::element_text(size = ggplot2::rel(0.8)),
-          axis.ticks = ggplot2::element_line(colour = "#54d8e0"),
-          legend.key = ggplot2::element_rect(colour = "#54d8e0"),
-          panel.border = ggplot2::element_rect(fill = NA, colour = "#54d8e0"),
-          strip.background = ggplot2::element_rect(fill = "grey80", colour = "#54d8e0"))
-     #annotation_custom(picc, xmin=5, xmax=7, ymin=30, ymax=45)
-}
-
-ggplot2::ggplot(iris, ggplot2::aes(x=Sepal.Length, y=Petal.Length))+
-  ggplot2::geom_point()+
-  theme_liu2()
-
-
-# imgg <- png::readPNG("/Users/aashana/RcourseLAB4/images/liuLogo.png")
-# picc <- as.raster(imgg, 10, 10, 10, 10, angle = 0, interpolate = TRUE)
-
+RcourseLAB4::theme_liu2()
 ```
 
 

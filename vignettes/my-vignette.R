@@ -4,69 +4,33 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 
-## ------------------------------------------------------------------------
-linreg(formula = Petal.Length ~ Species, data = iris)
+## ----include=FALSE-------------------------------------------------------
+library(RcourseLAB4)
+library(ggplot2)
 
 ## ------------------------------------------------------------------------
 lm <- linreg(formula = Petal.Length ~ Species, data = iris)
-# print method for linreg
-print(lm)
-
-# plot methd for linreg
-plot(lm)
-
-# resd method for linreg
-resid(lm)
-
-# pred method for linreg
-pred(lm)
-
-# coef method for linreg
-coef(lm)
-
-# summary method for linreg
-summary(lm)
 
 ## ------------------------------------------------------------------------
+RcourseLAB4::print.linreg(lm)
 
-theme_liu1 <- function(){
-  ggplot2::theme_bw()+
-  ggplot2::theme(panel.background = ggplot2::element_rect(fill = "#FFFFFF", colour = "#666666"),
-        panel.grid.major = ggplot2::element_line(colour = "#54d8e0", size=0.3),
-        panel.grid.minor = ggplot2::element_line(colour = "#54d8e0", size=0.3),
-        axis.line = ggplot2::element_line(size =0.3, colour = "#54d8e0"),
-        axis.text = ggplot2::element_text(size = ggplot2::rel(0.8)),
-        axis.ticks = ggplot2::element_line(colour = "#54d8e0"),
-        legend.key = ggplot2::element_rect(colour = "#54d8e0"),
-        panel.border = ggplot2::element_rect(fill = NA, colour = "#54d8e0"),
-        strip.background = ggplot2::element_rect(fill = "grey80", colour = "#54d8e0"))
-}
+## ------------------------------------------------------------------------
+RcourseLAB4::plot(lm)
 
-ggplot2::ggplot(faithful, ggplot2::aes(x=eruptions, y=waiting))+
-  ggplot2::geom_point()+
-  theme_liu1()
+## ------------------------------------------------------------------------
+RcourseLAB4::resid(lm)
 
+## ------------------------------------------------------------------------
+RcourseLAB4::pred(lm)
 
-theme_liu2 <- function(){
-  ggplot2::theme_bw()+
-    ggplot2::theme(panel.background = ggplot2::element_rect(fill = "#54d8e0", colour = "#666666"),
-          panel.grid.major = ggplot2::element_line(colour = "#FFFFFF", size=0.3),
-          panel.grid.minor = ggplot2::element_line(colour = "#FFFFFF", size=0.3),
-          axis.line = ggplot2::element_line(size =0.3, colour = "#54d8e0"),
-          axis.text = ggplot2::element_text(size = ggplot2::rel(0.8)),
-          axis.ticks = ggplot2::element_line(colour = "#54d8e0"),
-          legend.key = ggplot2::element_rect(colour = "#54d8e0"),
-          panel.border = ggplot2::element_rect(fill = NA, colour = "#54d8e0"),
-          strip.background = ggplot2::element_rect(fill = "grey80", colour = "#54d8e0"))
-     #annotation_custom(picc, xmin=5, xmax=7, ymin=30, ymax=45)
-}
+## ------------------------------------------------------------------------
+RcourseLAB4::coef(lm)
 
-ggplot2::ggplot(iris, ggplot2::aes(x=Sepal.Length, y=Petal.Length))+
-  ggplot2::geom_point()+
-  theme_liu2()
+## ------------------------------------------------------------------------
+RcourseLAB4::summary(lm)
 
+## ------------------------------------------------------------------------
+RcourseLAB4::theme_liu1()
 
-# imgg <- png::readPNG("/Users/aashana/RcourseLAB4/images/liuLogo.png")
-# picc <- as.raster(imgg, 10, 10, 10, 10, angle = 0, interpolate = TRUE)
-
+RcourseLAB4::theme_liu2()
 
