@@ -4,10 +4,12 @@
 \alias{print.linreg}
 \title{Function to implement print method for linreg class}
 \usage{
-\method{print}{linreg}(x)
+\method{print}{linreg}(x, ...)
 }
 \arguments{
 \item{x}{object of class linreg}
+
+\item{...}{optional object}
 }
 \value{
 prints text to replicate the print.lm behaviour

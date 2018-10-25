@@ -61,10 +61,11 @@ linreg <- function(formula, data){
 #' Function to implement print method for linreg class
 #' @name print.linreg
 #' @param x object of class linreg
+#' @param ... optional object
 #' @return prints text to replicate the print.lm behaviour
 #' @examples print(linreg(formula = Petal.Length ~ Species, data = iris))
 #' @export
-print.linreg <- function(x){
+print.linreg <- function(x, ...){
   
   cat("\nCall:\n", paste(deparse(x$call), sep = "\n", collapse = "\n"), "\n\n", sep = "")
   cat("Coefficients:\n")
